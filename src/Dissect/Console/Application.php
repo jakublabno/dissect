@@ -22,7 +22,7 @@ class Application extends BaseApplication
         parent::__construct('Dissect', $version);
     }
 
-    protected function getCommandName(InputInterface $input)
+    protected function getCommandName(InputInterface $input): string
     {
         return 'dissect';
     }
@@ -35,7 +35,7 @@ class Application extends BaseApplication
         return $default;
     }
 
-    public function getDefinition()
+    public function getDefinition(): InputDefinition
     {
         return new InputDefinition(array(
             new InputOption('--help',    '-h', InputOption::VALUE_NONE, 'Display this help message.'),

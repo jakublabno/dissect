@@ -15,8 +15,8 @@ use LogicException;
  */
 class StatefulLexer extends AbstractLexer
 {
-    protected $states = array();
-    protected $stateStack = array();
+    protected array $states = array();
+    protected array $stateStack = array();
     protected $stateBeingBuilt = null;
     protected $typeBeingBuilt = null;
 
@@ -37,11 +37,11 @@ class StatefulLexer extends AbstractLexer
      * identical.
      *
      * @param string $type The token type.
-     * @param string $value The value to be recognized.
+     * @param string|null $value The value to be recognized.
      *
-     * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
+     * @return StatefulLexer This instance for fluent interface.
      */
-    public function token($type, $value = null)
+    public function token(string $type, string $value = null): static
     {
         if ($this->stateBeingBuilt === null) {
             throw new LogicException("Define a lexer state first.");
@@ -67,9 +67,9 @@ class StatefulLexer extends AbstractLexer
      * @param string $type The token type.
      * @param string $regex The regular expression used to match the token.
      *
-     * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
+     * @return StatefulLexer This instance for fluent interface.
      */
-    public function regex($type, $regex)
+    public function regex(string $type, string $regex): static
     {
         if ($this->stateBeingBuilt === null) {
             throw new LogicException("Define a lexer state first.");
@@ -90,9 +90,9 @@ class StatefulLexer extends AbstractLexer
      *
      * @param mixed $type,... Unlimited number of token types.
      *
-     * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
+     * @return StatefulLexer This instance for fluent interface.
      */
-    public function skip()
+    public function skip(): static
     {
         if ($this->stateBeingBuilt === null) {
             throw new LogicException("Define a lexer state first.");
@@ -108,9 +108,9 @@ class StatefulLexer extends AbstractLexer
      *
      * @param string $state The new state name.
      *
-     * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
+     * @return StatefulLexer This instance for fluent interface.
      */
-    public function state($state)
+    public function state(string $state): static
     {
         $this->stateBeingBuilt = $state;
 
@@ -128,9 +128,9 @@ class StatefulLexer extends AbstractLexer
      *
      * @param string $state The name of the starting state.
      *
-     * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
+     * @return StatefulLexer This instance for fluent interface.
      */
-    public function start($state)
+    public function start(string $state): static
     {
         $this->stateStack[] = $state;
 
@@ -142,9 +142,9 @@ class StatefulLexer extends AbstractLexer
      *
      * @param mixed $action The action to take.
      *
-     * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
+     * @return StatefulLexer This instance for fluent interface.
      */
-    public function action($action)
+    public function action(mixed $action): static
     {
         if ($this->stateBeingBuilt === null || $this->typeBeingBuilt === null) {
             throw new LogicException("Define a lexer state and type first.");
@@ -158,7 +158,7 @@ class StatefulLexer extends AbstractLexer
     /**
      * {@inheritDoc}
      */
-    protected function shouldSkipToken(Token $token)
+    protected function shouldSkipToken(Token $token): bool
     {
         $state = $this->states[$this->stateStack[count($this->stateStack) - 1]];
 
@@ -168,7 +168,7 @@ class StatefulLexer extends AbstractLexer
     /**
      * {@inheritDoc}
      */
-    protected function extractToken($string)
+    protected function extractToken(string $string): CommonToken|Token|null
     {
         if (empty($this->stateStack)) {
             throw new LogicException("You must set a starting state before lexing.");

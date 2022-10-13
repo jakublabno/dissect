@@ -19,14 +19,14 @@ abstract class AbstractLexer implements Lexer
     /**
      * @var int
      */
-    private $line = 1;
+    private int $line = 1;
 
     /**
      * Returns the current line.
      *
      * @return int The current line.
      */
-    protected function getCurrentLine()
+    protected function getCurrentLine(): int
     {
         return $this->line;
     }
@@ -39,7 +39,7 @@ abstract class AbstractLexer implements Lexer
      *
      * @return \Dissect\Lexer\Token|null The extracted token or null.
      */
-    abstract protected function extractToken($string);
+    abstract protected function extractToken(string $string): ?Token;
 
     /**
      * Should given token be skipped?
@@ -48,12 +48,12 @@ abstract class AbstractLexer implements Lexer
      *
      * @return boolean Whether to skip the token.
      */
-    abstract protected function shouldSkipToken(Token $token);
+    abstract protected function shouldSkipToken(Token $token): bool;
 
     /**
      * {@inheritDoc}
      */
-    public function lex($string)
+    public function lex(string $string): TokenStream\TokenStream|ArrayTokenStream
     {
         // normalize line endings
         $string = strtr($string, array("\r\n" => "\n", "\r" => "\n"));

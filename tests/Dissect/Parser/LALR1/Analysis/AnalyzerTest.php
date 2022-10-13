@@ -9,7 +9,7 @@ use PHPUnit_Framework_TestCase;
 
 class AnalyzerTest extends PHPUnit_Framework_TestCase
 {
-    protected $analyzer = null;
+    protected ?Analyzer $analyzer = null;
 
     /**
      * @test
@@ -211,12 +211,12 @@ class AnalyzerTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(Grammar::SHIFT, $conflict['resolution']);
     }
 
-    protected function getAnalysisResult(Grammar $grammar)
+    protected function getAnalysisResult(Grammar $grammar): AnalysisResult
     {
         return $this->getAnalyzer()->analyze($grammar);
     }
 
-    protected function getAnalyzer()
+    protected function getAnalyzer(): ?Analyzer
     {
         if ($this->analyzer === null) {
             $this->analyzer = new Analyzer();

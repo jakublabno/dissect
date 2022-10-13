@@ -14,7 +14,7 @@ use Dissect\Parser\LALR1\Analysis\State;
  */
 class AutomatonDumper
 {
-    protected $automaton;
+    protected Automaton $automaton;
 
     /**
      * Constructor.
@@ -31,7 +31,7 @@ class AutomatonDumper
      *
      * @return string The automaton encoded in DOT.
      */
-    public function dump()
+    public function dump(): string
     {
         $writer = new StringWriter();
 
@@ -69,7 +69,7 @@ class AutomatonDumper
      *
      * @return string The output in DOT format.
      */
-    public function dumpState($n)
+    public function dumpState(int $n): string
     {
         $writer = new StringWriter();
 
@@ -104,7 +104,7 @@ class AutomatonDumper
         return $writer->get();
     }
 
-    protected function writeHeader(StringWriter $writer, $stateNumber = null)
+    protected function writeHeader(StringWriter $writer, $stateNumber = null): void
     {
         $writer->writeLine(sprintf(
             'digraph %s {',
@@ -115,7 +115,7 @@ class AutomatonDumper
         $writer->writeLine('rankdir="LR";');
     }
 
-    protected function writeState(StringWriter $writer, State $state, $full = true)
+    protected function writeState(StringWriter $writer, State $state, $full = true): void
     {
         $n = $state->getNumber();
 
@@ -141,7 +141,7 @@ class AutomatonDumper
         $writer->writeLine($string);
     }
 
-    protected function formatItem(Item $item)
+    protected function formatItem(Item $item): string
     {
         $rule = $item->getRule();
         $components = $rule->getComponents();
@@ -167,7 +167,7 @@ class AutomatonDumper
         return $string;
     }
 
-    protected function writeFooter(StringWriter $writer)
+    protected function writeFooter(StringWriter $writer): void
     {
         $writer->writeLine('}');
     }

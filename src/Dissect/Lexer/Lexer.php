@@ -15,10 +15,10 @@ interface Lexer
      *
      * @param string $string The string to lex.
      *
-     * @throws \Dissect\Lexer\Exception\RecognitionException
+     * @return \Dissect\Lexer\TokenStream\TokenStream The resulting token stream.
+     *@throws \Dissect\Lexer\Exception\RecognitionException
      * When unable to extract more tokens from the string.
      *
-     * @return \Dissect\Lexer\TokenStream\TokenStream The resulting token stream.
      */
-    public function lex($string);
+    public function lex(string $string): TokenStream\TokenStream;
 }

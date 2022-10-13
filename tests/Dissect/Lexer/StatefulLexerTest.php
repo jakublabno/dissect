@@ -8,7 +8,7 @@ use PHPUnit_Framework_TestCase;
 
 class StatefulLexerTest extends PHPUnit_Framework_TestCase
 {
-    protected $lexer;
+    protected StatefulLexer $lexer;
 
     protected function setUp()
     {

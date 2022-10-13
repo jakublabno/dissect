@@ -17,12 +17,12 @@ class Parser implements P\Parser
     /**
      * @var \Dissect\Parser\Grammar
      */
-    protected $grammar;
+    protected P\Grammar $grammar;
 
     /**
      * @var array
      */
-    protected $parseTable;
+    protected array $parseTable;
 
     /**
      * Constructor.

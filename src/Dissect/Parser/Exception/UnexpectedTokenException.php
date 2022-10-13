@@ -21,12 +21,12 @@ EOT;
     /**
      * @var \Dissect\Lexer\Token
      */
-    protected $token;
+    protected Token $token;
 
     /**
      * @var string[]
      */
-    protected $expected;
+    protected array $expected;
 
     /**
      * Constructor.
@@ -58,7 +58,7 @@ EOT;
      *
      * @return \Dissect\Lexer\Token The unexpected token.
      */
-    public function getToken()
+    public function getToken(): Token
     {
         return $this->token;
     }
@@ -68,7 +68,7 @@ EOT;
      *
      * @return string[] The expected token types.
      */
-    public function getExpected()
+    public function getExpected(): array
     {
         return $this->expected;
     }

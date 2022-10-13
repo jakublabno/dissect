@@ -16,17 +16,17 @@ class DebugTableDumper implements TableDumper
     /**
      * @var \Dissect\Parser\Grammar
      */
-    protected $grammar;
+    protected Grammar $grammar;
 
     /**
      * @var \Dissect\Parser\LALR1\Dumper\StringWriter
      */
-    protected $writer;
+    protected StringWriter $writer;
 
     /**
      * @var boolean
      */
-    protected $written = false;
+    protected bool $written = false;
 
     /**
      * Constructor.
@@ -42,7 +42,7 @@ class DebugTableDumper implements TableDumper
     /**
      * {@inheritDoc}
      */
-    public function dump(array $table)
+    public function dump(array $table): string
     {
         // for readability
         ksort($table['action']);

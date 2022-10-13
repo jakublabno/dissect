@@ -7,7 +7,7 @@ use PHPUnit_Framework_TestCase;
 
 class ArrayTokenStreamTest extends PHPUnit_Framework_TestCase
 {
-    protected $stream;
+    protected ArrayTokenStream $stream;
 
     protected function setUp()
     {

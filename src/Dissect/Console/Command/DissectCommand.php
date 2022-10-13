@@ -52,7 +52,7 @@ EOT
             );
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         $class = strtr(
             $input->getArgument('grammar-class'),
@@ -186,7 +186,7 @@ EOT
         return 0;
     }
 
-    protected function formatConflict(array $conflict)
+    protected function formatConflict(array $conflict): string
     {
         $type = $conflict['resolution'] === Grammar::SHIFT
             ? 'shift/reduce'

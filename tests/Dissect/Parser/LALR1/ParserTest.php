@@ -7,8 +7,8 @@ use PHPUnit_Framework_TestCase;
 
 class ParserTest extends PHPUnit_Framework_TestCase
 {
-    protected $lexer;
-    protected $parser;
+    protected ArithLexer $lexer;
+    protected Parser $parser;
 
     protected function setUp()
     {

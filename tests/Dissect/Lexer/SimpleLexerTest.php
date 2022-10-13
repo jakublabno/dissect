@@ -8,7 +8,7 @@ use PHPUnit_Framework_TestCase;
 
 class SimpleLexerTest extends PHPUnit_Framework_TestCase
 {
-    protected $lexer;
+    protected SimpleLexer $lexer;
 
     public function setUp()
     {
