@@ -12,17 +12,17 @@ class AnalysisResult
     /**
      * @var \Dissect\Parser\LALR1\Analysis\Automaton
      */
-    protected $automaton;
+    protected Automaton $automaton;
 
     /**
      * @var array
      */
-    protected $parseTable;
+    protected array $parseTable;
 
     /**
      * @var array
      */
-    protected $resolvedConflicts;
+    protected array $resolvedConflicts;
 
     /**
      * Constructor.
@@ -44,7 +44,7 @@ class AnalysisResult
      *
      * @return \Dissect\Parser\LALR1\Analysis\Automaton
      */
-    public function getAutomaton()
+    public function getAutomaton(): Automaton
     {
         return $this->automaton;
     }
@@ -54,7 +54,7 @@ class AnalysisResult
      *
      * @return array The parse table.
      */
-    public function getParseTable()
+    public function getParseTable(): array
     {
         return $this->parseTable;
     }
@@ -64,7 +64,7 @@ class AnalysisResult
      *
      * @return array The conflicts.
      */
-    public function getResolvedConflicts()
+    public function getResolvedConflicts(): array
     {
         return $this->resolvedConflicts;
     }

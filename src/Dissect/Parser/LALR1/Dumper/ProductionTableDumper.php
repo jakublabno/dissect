@@ -15,7 +15,7 @@ class ProductionTableDumper implements TableDumper
     /**
      * {@inheritDoc}
      */
-    public function dump(array $table)
+    public function dump(array $table): string
     {
         $writer = new StringWriter();
 

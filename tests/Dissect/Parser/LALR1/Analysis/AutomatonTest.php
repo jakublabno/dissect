@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase;
 
 class AutomatonTest extends PHPUnit_Framework_TestCase
 {
-    protected $automaton;
+    protected Automaton $automaton;
 
     protected function setUp()
     {

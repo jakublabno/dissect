@@ -24,5 +24,5 @@ interface Parser
      *
      * @return mixed The semantical value of the input.
      */
-    public function parse(TokenStream $stream);
+    public function parse(TokenStream $stream): mixed;
 }

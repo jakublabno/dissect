@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase;
 
 class GrammarTest extends PHPUnit_Framework_TestCase
 {
-    protected $grammar;
+    protected ExampleGrammar $grammar;
 
     protected function setUp()
     {

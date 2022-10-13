@@ -7,7 +7,7 @@ use PHPUnit_Framework_TestCase;
 
 class AutomatonDumperTest extends PHPUnit_Framework_TestCase
 {
-    protected $dumper;
+    protected AutomatonDumper $dumper;
 
     protected function setUp()
     {

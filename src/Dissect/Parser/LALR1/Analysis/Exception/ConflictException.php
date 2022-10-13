@@ -14,7 +14,7 @@ use LogicException;
 class ConflictException extends LogicException
 {
     protected $state;
-    protected $automaton;
+    protected Automaton $automaton;
 
     public function __construct($message, $state, Automaton $automaton)
     {
@@ -29,7 +29,7 @@ class ConflictException extends LogicException
      *
      * @return int
      */
-    public function getStateNumber()
+    public function getStateNumber(): int
     {
         return $this->state;
     }
@@ -39,7 +39,7 @@ class ConflictException extends LogicException
      *
      * @return \Dissect\Parser\LALR1\Analysis\Automaton
      */
-    public function getAutomaton()
+    public function getAutomaton(): Automaton
     {
         return $this->automaton;
     }

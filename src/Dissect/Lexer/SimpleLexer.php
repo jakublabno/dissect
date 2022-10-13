@@ -17,12 +17,12 @@ class SimpleLexer extends AbstractLexer
     /**
      * @var array
      */
-    protected $skipTokens = array();
+    protected array $skipTokens = array();
 
     /**
      * @var array
      */
-    protected $recognizers = array();
+    protected array $recognizers = array();
 
     /**
      * Adds a new token definition. If given only one argument,
@@ -30,11 +30,11 @@ class SimpleLexer extends AbstractLexer
      * identical.
      *
      * @param string $type The token type.
-     * @param string $value The value to be recognized.
+     * @param string|null $value The value to be recognized.
      *
      * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
      */
-    public function token($type, $value = null)
+    public function token(string $type, string $value = null): static
     {
         if ($value) {
             $this->recognizers[$type] = new SimpleRecognizer($value);
@@ -53,7 +53,7 @@ class SimpleLexer extends AbstractLexer
      *
      * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
      */
-    public function regex($type, $regex)
+    public function regex(string $type, string $regex): static
     {
         $this->recognizers[$type] = new RegexRecognizer($regex);
 
@@ -67,7 +67,7 @@ class SimpleLexer extends AbstractLexer
      *
      * @return \Dissect\Lexer\SimpleLexer This instance for fluent interface.
      */
-    public function skip()
+    public function skip(): static
     {
         $this->skipTokens = func_get_args();
 
@@ -77,7 +77,7 @@ class SimpleLexer extends AbstractLexer
     /**
      * {@inheritDoc}
      */
-    protected function shouldSkipToken(Token $token)
+    protected function shouldSkipToken(Token $token): bool
     {
         return in_array($token->getType(), $this->skipTokens);
     }
@@ -85,7 +85,7 @@ class SimpleLexer extends AbstractLexer
     /**
      * {@inheritDoc}
      */
-    protected function extractToken($string)
+    protected function extractToken(string $string): CommonToken|Token|null
     {
         $value = $type = null;
 

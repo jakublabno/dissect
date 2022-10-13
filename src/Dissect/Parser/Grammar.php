@@ -25,32 +25,32 @@ class Grammar
     /**
      * @var \Dissect\Parser\Rule[]
      */
-    protected $rules = array();
+    protected array $rules = array();
 
     /**
      * @var array
      */
-    protected $groupedRules = array();
+    protected array $groupedRules = array();
 
     /**
      * @var int
      */
-    protected $nextRuleNumber = 1;
+    protected int $nextRuleNumber = 1;
 
     /**
      * @var int
      */
-    protected $conflictsMode = self::SHIFT;
+    protected int $conflictsMode = self::SHIFT;
 
     /**
      * @var string
      */
-    protected $currentNonterminal;
+    protected string $currentNonterminal;
 
     /**
      * @var \Dissect\Parser\Rule
      */
-    protected $currentRule;
+    protected Rule $currentRule;
 
     /**
      * Signifies that the parser should not resolve any
@@ -85,7 +85,7 @@ class Grammar
      */
     const ALL = 7;
 
-    public function __invoke($nonterminal)
+    public function __invoke($nonterminal): static
     {
         $this->currentNonterminal = $nonterminal;
 
@@ -99,7 +99,7 @@ class Grammar
      *
      * @return \Dissect\Parser\Grammar This instance.
      */
-    public function is()
+    public function is(): static
     {
         if ($this->currentNonterminal === null) {
             throw new LogicException(
@@ -126,7 +126,7 @@ class Grammar
      *
      * @return \Dissect\Parser\Grammar This instance.
      */
-    public function call($callback)
+    public function call(callable $callback): static
     {
         if ($this->currentRule === null) {
             throw new LogicException(
@@ -144,12 +144,12 @@ class Grammar
      *
      * @return \Dissect\Parser\Rule[] The rules.
      */
-    public function getRules()
+    public function getRules(): array
     {
         return $this->rules;
     }
 
-    public function getRule($number)
+    public function getRule($number): Rule
     {
         return $this->rules[$number];
     }
@@ -159,7 +159,7 @@ class Grammar
      *
      * @return string[] The nonterminals.
      */
-    public function getNonterminals()
+    public function getNonterminals(): array
     {
         return $this->nonterminals;
     }
@@ -169,7 +169,7 @@ class Grammar
      *
      * @return array The rules grouped by nonterminal name.
      */
-    public function getGroupedRules()
+    public function getGroupedRules(): array
     {
         return $this->groupedRules;
     }
@@ -179,7 +179,7 @@ class Grammar
      *
      * @param string The name of the start rule.
      */
-    public function start($name)
+    public function start($name): void
     {
         $this->rules[0] = new Rule(0, self::START_RULE_NAME, array($name));
     }
@@ -189,7 +189,7 @@ class Grammar
      *
      * @return \Dissect\Parser\Rule The start rule.
      */
-    public function getStartRule()
+    public function getStartRule(): Rule
     {
         if (!isset($this->rules[0])) {
             throw new LogicException("No start rule specified.");
@@ -203,7 +203,7 @@ class Grammar
      *
      * @param int $mode The bitmask for the mode.
      */
-    public function resolve($mode)
+    public function resolve(int $mode): void
     {
         $this->conflictsMode = $mode;
     }
@@ -213,7 +213,7 @@ class Grammar
      *
      * @return int The bitmask of the resolution mode.
      */
-    public function getConflictsMode()
+    public function getConflictsMode(): int
     {
         return $this->conflictsMode;
     }

@@ -27,12 +27,12 @@ EOT;
     /**
      * @var \Dissect\Parser\Rule
      */
-    protected $rule;
+    protected Rule $rule;
 
     /**
      * @var string
      */
-    protected $lookahead;
+    protected string $lookahead;
 
     /**
      * Constructor.
@@ -67,7 +67,7 @@ EOT;
      *
      * @return \Dissect\Parser\Rule The conflicting rule.
      */
-    public function getRule()
+    public function getRule(): Rule
     {
         return $this->rule;
     }
@@ -77,7 +77,7 @@ EOT;
      *
      * @return string The conflicting lookahead.
      */
-    public function getLookahead()
+    public function getLookahead(): string
     {
         return $this->lookahead;
     }

@@ -11,7 +11,7 @@ use RuntimeException;
  */
 class RecognitionException extends RuntimeException
 {
-    protected $sourceLine;
+    protected int $sourceLine;
 
     /**
      * Constructor.
@@ -30,7 +30,7 @@ class RecognitionException extends RuntimeException
      *
      * @return int The source line number.
      */
-    public function getSourceLine()
+    public function getSourceLine(): int
     {
         return $this->sourceLine;
     }

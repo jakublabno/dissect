@@ -17,14 +17,14 @@ interface TokenStream extends Countable, IteratorAggregate
      *
      * @return int The current position in the stream.
      */
-    public function getPosition();
+    public function getPosition(): int;
 
     /**
      * Retrieves the current token.
      *
      * @return \Dissect\Lexer\Token The current token.
      */
-    public function getCurrentToken();
+    public function getCurrentToken(): \Dissect\Lexer\Token;
 
     /**
      * Returns a look-ahead token. Negative values are allowed
@@ -32,22 +32,22 @@ interface TokenStream extends Countable, IteratorAggregate
      *
      * @param int $n The look-ahead.
      *
-     * @throws \OutOfBoundsException If current position + $n is out of range.
-     *
      * @return \Dissect\Lexer\Token The lookahead token.
+     *@throws \OutOfBoundsException If current position + $n is out of range.
+     *
      */
-    public function lookAhead($n);
+    public function lookAhead(int $n): \Dissect\Lexer\Token;
 
     /**
      * Returns the token at absolute position $n.
      *
      * @param int $n The position.
      *
-     * @throws \OutOfBoundsException If $n is out of range.
-     *
      * @return \Dissect\Lexer\Token The token at position $n.
+     *@throws \OutOfBoundsException If $n is out of range.
+     *
      */
-    public function get($n);
+    public function get(int $n): \Dissect\Lexer\Token;
 
     /**
      * Moves the cursor to the absolute position $n.
@@ -56,7 +56,7 @@ interface TokenStream extends Countable, IteratorAggregate
      *
      * @throws \OutOfBoundsException If $n is out of range.
      */
-    public function move($n);
+    public function move(int $n);
 
     /**
      * Moves the cursor by $n, relative to the current position.
@@ -65,7 +65,7 @@ interface TokenStream extends Countable, IteratorAggregate
      *
      * @throws \OutOfBoundsException If current position + $n is out of range.
      */
-    public function seek($n);
+    public function seek(int $n);
 
     /**
      * Moves the cursor to the next token.

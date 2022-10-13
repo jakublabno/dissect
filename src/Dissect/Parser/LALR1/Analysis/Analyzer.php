@@ -24,7 +24,7 @@ class Analyzer
      *
      * @return \Dissect\Parser\LALR1\Analysis\AnalysisResult The result ofthe analysis.
      */
-    public function analyze(Grammar $grammar)
+    public function analyze(Grammar $grammar): AnalysisResult
     {
         $automaton = $this->buildAutomaton($grammar);
         list($parseTable, $conflicts) = $this->buildParseTable($automaton, $grammar);
@@ -39,7 +39,7 @@ class Analyzer
      *
      * @return \Dissect\Parser\LALR1\Analysis\Automaton The resulting automaton.
      */
-    protected function buildAutomaton(Grammar $grammar)
+    protected function buildAutomaton(Grammar $grammar): Automaton
     {
         // the eventual automaton
         $automaton = new Automaton();
@@ -277,7 +277,7 @@ class Analyzer
      *
      * @return array The parse table.
      */
-    protected function buildParseTable(Automaton $automaton, Grammar $grammar)
+    protected function buildParseTable(Automaton $automaton, Grammar $grammar): array
     {
         $nonterminals = array_keys($grammar->getGroupedRules());
         $conflictsMode = $grammar->getConflictsMode();
@@ -429,7 +429,7 @@ class Analyzer
      *
      * @return array Calculated FIRST sets.
      */
-    protected function calculateFirstSets(array $rules)
+    protected function calculateFirstSets(array $rules): array
     {
         // initialize
         $firstSets = array();
