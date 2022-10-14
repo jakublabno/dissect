@@ -25,7 +25,7 @@ class SimpleRecognizer implements Recognizer
     /**
      * {@inheritDoc}
      */
-    public function match(string $string, string &$result): bool
+    public function match(string $string, ?string &$result): bool
     {
         if (strncmp($string, $this->string, strlen($this->string)) === 0) {
             $result = $this->string;
