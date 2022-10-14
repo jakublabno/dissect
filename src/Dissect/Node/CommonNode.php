@@ -2,6 +2,7 @@
 
 namespace Dissect\Node;
 
+use ArrayIterator;
 use RuntimeException;
 
 /**
@@ -52,7 +53,7 @@ class CommonNode implements Node
     /**
      * {@inheritDoc}
      */
-    public function getNode(int|string $name)
+    public function getNode(int|string $name): Node
     {
         if (!isset($this->children[$name])) {
             throw new RuntimeException(sprintf('No child node "%s" exists.', $name));
@@ -96,7 +97,7 @@ class CommonNode implements Node
     /**
      * {@inheritDoc}
      */
-    public function getAttribute(string $key)
+    public function getAttribute(string $key): mixed
     {
         if (!isset($this->attributes[$key])) {
             throw new RuntimeException(sprintf('No attribute "%s" exists.', $key));

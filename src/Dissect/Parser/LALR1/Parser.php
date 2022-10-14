@@ -45,7 +45,7 @@ class Parser implements P\Parser
     /**
      * {@inheritDoc}
      */
-    public function parse(TokenStream $stream)
+    public function parse(TokenStream $stream): mixed
     {
         $stateStack = array($currentState = 0);
         $args = array();
