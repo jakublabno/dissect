@@ -111,6 +111,7 @@ class ArrayTokenStream implements TokenStream
     /**
      * @return int
      */
+    #[\ReturnTypeWillChange]
     public function count(): int
     {
         return count($this->tokens);
